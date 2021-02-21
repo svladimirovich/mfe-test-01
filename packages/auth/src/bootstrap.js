@@ -14,7 +14,6 @@ function mount(element, { onNavigate, onSignIn, devHistory, initialPath }) {
     ReactDOM.render(
         <App history={history} onSignIn={() => {
             onSignIn && onSignIn();
-            history.push('/'); // I could not useHistory() from the App component of the container app! ¯\_(°︿°)_/¯ 
         }} />,
         element
     );
