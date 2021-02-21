@@ -14,7 +14,8 @@ export default function MarketingApp() {
                 if (pathname !== currentPathname) {
                     history.push(pathname);
                 }
-            }
+            },
+            initialPath: history.location.pathname,
         });
         history.listen(onParentNavigate);
     }, []);
