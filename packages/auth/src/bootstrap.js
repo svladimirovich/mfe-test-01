@@ -4,7 +4,7 @@ import { createMemoryHistory, createBrowserHistory } from 'history';
 import App from './App';
 
 // Mount function to start up the app
-function mount(element, { onNavigate, devHistory, initialPath }) {
+function mount(element, { onNavigate, onSignIn, devHistory, initialPath }) {
     const history = devHistory || createMemoryHistory({
         initialEntries: [initialPath],
     });
@@ -12,7 +12,10 @@ function mount(element, { onNavigate, devHistory, initialPath }) {
         history.listen(onNavigate);
     }
     ReactDOM.render(
-        <App history={history} />,
+        <App history={history} onSignIn={() => {
+            onSignIn && onSignIn();
+            history.push('/'); // I could not useHistory() from the App component of the container app! ¯\_(°︿°)_/¯ 
+        }} />,
         element
     );
     return {
@@ -20,7 +23,7 @@ function mount(element, { onNavigate, devHistory, initialPath }) {
             if (pathname !== history.location.pathname) {
                 history.push(pathname);
             }
-        }
+        },
     };
 }
 
