@@ -19,6 +19,7 @@ const prodConfig = {
                 // it can work using relative path 
                 marketing: `marketingApp@${domain}/marketing/latest/remoteEntry.js`,
                 auth: `authApp@${domain}/auth/latest/remoteEntry.js`,
+                dashboard: `dashboardApp@${domain}/dashboard/latest/remoteEntry.js`,
             },
             shared: packageJson.dependencies,
         })

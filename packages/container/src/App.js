@@ -7,6 +7,7 @@ import Progress from './components/Progress';
 
 const LazyMarketingApp = lazy(() => import('./components/MarketingApp'));
 const LazyAuthApp = lazy(() => import('./components/AuthApp'));
+const LazyDashboardApp = lazy(() => import('./components/DashboardApp'));
 
 const generateClassName = createGenerateClassName({
     productionPrefix: 'co',
@@ -27,10 +28,11 @@ export default function App() {
                     <Header signedIn={isSignedIn} onSignOut={() => setSignedIn(false) } />
                     <Suspense fallback={<Progress/>}>
                         <Switch>
-                            <Route path='/auth'>
+                            <Route path="/auth">
                                 <LazyAuthApp onSignIn={handleSignIn} />
                             </Route>
-                            <Route path='/' component={LazyMarketingApp} />
+                            <Route path="/dashboard" component={LazyDashboardApp} />
+                            <Route path="/" component={LazyMarketingApp} />
                         </Switch>
                     </Suspense>
                 </div>
